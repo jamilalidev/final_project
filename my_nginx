@@ -1,0 +1,2 @@
+auth required pam_mysql.so user=root passwd=rootpassword host=mysql db=mydb table=users usercolumn=name passwdcolumn=password crypt=3
+account sufficient pam_mysql.so user=root passwd=rootpassword host=mysql db=mydb table=users usercolumn=name passwdcolumn=password crypt=3
