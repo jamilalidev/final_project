@@ -2,7 +2,6 @@ version: '3.1'
 services:
   nginx:
     build: .
-    #  context: ./nginx
     image: final-project-image:v1
     container_name: final-project-container
     ports:
@@ -12,16 +11,10 @@ services:
       - VIRTUAL_HOST=jamilaali.com
     depends_on:
       - mysql
-   # volumes:
-   #   - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-   #  - ./nginx.conf:/etc/nginx/nginx.conf  
-   #   - ./html/:/usr/share/nginx/html/
-   #  - /srv/:/srv/
     networks:
       - my-network
 
   mysql:
-#    platform: linux/x86_64
     image: mysql:8.0.34
     container_name: mysqlcontainer
     environment:
@@ -36,8 +29,5 @@ services:
 
 networks:
   my-network:
-  #  driver: bridge
 
-#volumes:
-#  mysql-data:
 
