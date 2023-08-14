@@ -29,23 +29,13 @@ RUN chmod 644 /usr/share/nginx/html/index.html
 #Log rotation
 COPY nginx-logrotate /etc/logrotate.d/nginx-logrotate
 
-#certs
-#RUN mkdir -p /etc/nginx/ssl
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
-
 # Create the /etc/nginx/ssl directory
 RUN mkdir -p /etc/nginx/ssl
 
 # Generate a self-signed certificate without user interaction
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-#   -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt \
-#   -subj "/C=AZ/ST=Baku/L=Baku/OU=NO/CN=jamilaali.com"
-
 RUN openssl req -x509 -newkey rsa:4096 -nodes -out /etc/nginx/ssl/server.crt \
 	-keyout /etc/nginx/ssl/server.key -days 365 \
 	-subj "/C=AZ/ST=Baku/L=Baku/OU=NO/CN=jamilaali.com"
-
-
 #/srv
 RUN mkdir -p /srv
 COPY *.txt /srv/
